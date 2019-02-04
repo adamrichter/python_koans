@@ -1,0 +1,3 @@
+Uruchamie w po zmianie jakiegokolwiek pliku *.py:
+
+  find . -name '*.py' | entr ./run.sh
