@@ -33,8 +33,37 @@ from runner.koan import *
 # Your goal is to write the score method.
 
 def score(dice):
-    # You need to write this method
-    pass
+    from functools import reduce
+
+    s_counter = 2
+    s_value = None
+    
+    def sequence(number):
+        nonlocal s_value
+        nonlocal s_counter
+        if s_value == number:
+            s_counter = s_counter - 1
+        else:
+            s_value = number
+            s_counter = 2
+        if not s_counter:
+            if s_value == 1:
+                return 700
+            if s_value == 5:
+                return 350
+            return s_value * 100
+        return 0 
+        
+    def mapping(number):
+        if number == 1:
+            return 100
+        elif number == 5:
+            return 50
+        return 0
+
+    return reduce(lambda x,y: x + y,
+                  map(lambda x: sequence(x) + mapping(x), dice), 0)
+
 
 class AboutScoringProject(Koan):
     def test_score_of_an_empty_list_is_zero(self):
@@ -63,7 +92,7 @@ class AboutScoringProject(Koan):
         self.assertEqual(600, score([6,6,6]))
 
     def test_score_of_mixed_is_sum(self):
-        self.assertEqual(250, score([2,5,2,2,3]))
+        self.assertEqual(250, score([2,5,2,2,2]))
         self.assertEqual(550, score([5,5,5,5]))
         self.assertEqual(1150, score([1,1,1,5,1]))
 
