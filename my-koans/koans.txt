@@ -1,0 +1,3 @@
+# Lines starting with # are ignored.
+koans.my_about_example.MyAboutExample
+
