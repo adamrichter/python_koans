@@ -68,8 +68,8 @@ class AboutMethodBindings(Koan):
         #   binding_owner = obj
         #   owner_type = cls
 
-        self.assertEqual(__, bound_obj.__class__.__name__)
-        self.assertEqual(__, binding_owner.__class__.__name__)
+        self.assertEqual("BoundClass", bound_obj.__class__.__name__)
+        self.assertEqual("AboutMethodBindings", binding_owner.__class__.__name__)
         self.assertEqual(AboutMethodBindings, owner_type)
 
     # ------------------------------------------------------------------
@@ -86,5 +86,5 @@ class AboutMethodBindings(Koan):
     def test_set_descriptor_changes_behavior_of_attribute_assignment(self):
         self.assertEqual(None, self.color.choice)
         self.color = 'purple'
-        self.assertEqual(__, self.color.choice)
+        self.assertEqual('purple', self.color.choice)
 
